@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+const int RGB_MAX = 255;
+
 class Color {
 private:
     int red;
@@ -8,30 +10,42 @@ private:
     int blue;
 
 public:
-    Color(int r, int g, int b) : red(r), green(g), blue(b) {}
+    int getRed() const      { return red; }
+    int getGreen() const    { return green; }
+    int getBlue() const     { return blue; }
 
-    void setRed(int r) {red = r;}
-    void setGreen(int g) {green = g;}
-    void setBlue(int b) {blue = b;}
+    void setRed(int r)      { red = r; }
+    void setGreen(int g)    { green = g; }
+    void setBlue(int b)     { blue = b; }
 
-    int getRed() const {return red;}
-    int getGreen() const {return green;}
-    int getBlue() const {return blue;}
-
-    void print() const {
-        cout << "Color(R: " << red << ", G: " << green << ", B: " << blue << ")\n";
-    }
+    void print(const string& colorName);
 };
+
+void Color::print(const string& colorName) {
+    cout << "Color " << colorName << " (R: " << red << ", G: " << green << ", B: " << blue << ")\n";
+}
+
+void print(Color);
 
 int main()
 {
-    Color color1(255, 0, 0);
-    Color color2(0, 255, 0);
-    Color color3(0, 0, 255);
+    Color colorR, colorG, colorB;
 
-    color1.print();
-    color2.print();
-    color3.print();
-    
+    colorR.setRed(RGB_MAX);
+    colorR.setGreen(0);
+    colorR.setBlue(0);
+
+    colorG.setRed(0);
+    colorG.setGreen(RGB_MAX);
+    colorG.setBlue(0);
+
+    colorB.setRed(0);
+    colorB.setGreen(0);
+    colorB.setBlue(RGB_MAX);
+
+    colorR.print("Red");
+    colorG.print("Green");
+    colorB.print("Blue");
+
     return 0;
 }
